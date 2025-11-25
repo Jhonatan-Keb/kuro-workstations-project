@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 class ProfileController extends Controller
@@ -27,6 +28,26 @@ class ProfileController extends Controller
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
         $request->user()->fill($request->validated());
+
+        // --- LÓGICA DE FOTO DE PERFIL ---
+        if ($request->hasFile('photo')) {
+            // 1. Validar que sea una imagen válida
+            $request->validate([
+                'photo' => ['nullable', 'image', 'max:1024'], // Max 1MB
+            ]);
+
+            // 2. Si ya tenía una foto vieja, borrarla para no acumular basura
+            if ($request->user()->profile_photo_path) {
+                Storage::delete($request->user()->profile_photo_path);
+            }
+
+            // 3. Guardar la nueva foto en la carpeta 'profile-photos' del disco público
+            $path = $request->file('photo')->store('profile-photos', 'public');
+
+            // 4. Asignar la ruta al usuario
+            $request->user()->profile_photo_path = $path;
+        }
+        // --------------------------------
 
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;
