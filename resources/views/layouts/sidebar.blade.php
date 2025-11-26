@@ -14,13 +14,15 @@
                 <span class="mr-3">📊</span> {{ __('Dashboard') }}
             </x-nav-link>
 
-            <x-nav-link :href="route('roles.index')" :active="request()->routeIs('roles.index')" class="w-full justify-start">
-                <span class="mr-3">🔐</span> {{ __('Roles') }}
-            </x-nav-link>
+            @if (Auth::user()->role === 'admin')
+                <x-nav-link :href="route('roles.index')" :active="request()->routeIs('roles.index')" class="w-full justify-start">
+                    <span class="mr-3">🔐</span> {{ __('Roles') }}
+                </x-nav-link>
 
-            <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')" class="w-full justify-start">
-                <span class="mr-3">👥</span> {{ __('Usuarios') }}
-            </x-nav-link>
+                <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')" class="w-full justify-start">
+                    <span class="mr-3">👥</span> {{ __('Usuarios') }}
+                </x-nav-link>
+            @endif
 
             <x-nav-link :href="route('workstations.index')" :active="request()->routeIs('workstations.*')" class="w-full justify-start">
                 <span class="mr-3">🖥️</span> {{ __('Workstations') }}

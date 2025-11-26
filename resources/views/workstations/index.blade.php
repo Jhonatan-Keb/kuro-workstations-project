@@ -35,6 +35,12 @@
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         {{ __('Estado') }}
                                     </th>
+                                    @if (auth()->user()->role === 'admin' || auth()->user()->role === 'technician')
+                                        <th scope="col"
+                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            {{ __('Creado por') }}
+                                        </th>
+                                    @endif
                                     <th scope="col" class="relative px-6 py-3">
                                         <span class="sr-only">{{ __('Acciones') }}</span>
                                     </th>
@@ -62,6 +68,13 @@
                                                 {{ $pc->status }}
                                             </span>
                                         </td>
+                                        @if (auth()->user()->role === 'admin' || auth()->user()->role === 'technician')
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm text-gray-900 dark:text-gray-100">
+                                                    {{ $pc->user->name ?? 'N/A' }}
+                                                </div>
+                                            </td>
+                                        @endif
                                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                             <a href="{{ route('workstations.edit', $pc->id) }}"
                                                 class="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-600">

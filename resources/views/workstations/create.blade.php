@@ -10,60 +10,88 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
 
-                    <form action="#" class="space-y-6">
+                    <form action="{{ route('workstations.store') }}" method="POST" class="space-y-6">
+                        @csrf
 
                         <div>
                             <label class="block font-medium text-sm text-gray-700 dark:text-gray-300">Nombre del
                                 Build</label>
-                            <input type="text"
+                            <input type="text" name="name"
                                 class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block w-full mt-1"
-                                placeholder="Ej: Dev Beast v1">
+                                placeholder="Ej: Dev Beast v1" value="{{ old('name') }}">
+                            @error('name')
+                                <span class="text-red-500 text-sm">{{ $message }}</span>
+                            @enderror
                         </div>
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
                                 <label class="block font-medium text-sm text-gray-700 dark:text-gray-300">Procesador
                                     (CPU)</label>
-                                <input type="text"
-                                    class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block w-full mt-1"
-                                    placeholder="Ej: Ryzen 9 7950X">
+                                <select name="cpu"
+                                    class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block w-full mt-1">
+                                    @foreach ($cpus as $cpu)
+                                        <option value="{{ $cpu }}" {{ old('cpu') == $cpu ? 'selected' : '' }}>
+                                            {{ $cpu }}</option>
+                                    @endforeach
+                                </select>
+                                @error('cpu')
+                                    <span class="text-red-500 text-sm">{{ $message }}</span>
+                                @enderror
                             </div>
 
                             <div>
                                 <label class="block font-medium text-sm text-gray-700 dark:text-gray-300">Memoria RAM
                                     (GB)</label>
-                                <input type="number"
-                                    class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block w-full mt-1"
-                                    placeholder="32">
+                                <select name="ram"
+                                    class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block w-full mt-1">
+                                    @foreach ($rams as $ram)
+                                        <option value="{{ $ram }}" {{ old('ram') == $ram ? 'selected' : '' }}>
+                                            {{ $ram }}</option>
+                                    @endforeach
+                                </select>
+                                @error('ram')
+                                    <span class="text-red-500 text-sm">{{ $message }}</span>
+                                @enderror
                             </div>
 
                             <div>
                                 <label class="block font-medium text-sm text-gray-700 dark:text-gray-300">Tarjeta
                                     Gráfica (GPU)</label>
-                                <input type="text"
-                                    class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block w-full mt-1"
-                                    placeholder="Ej: RTX 4080">
+                                <select name="gpu"
+                                    class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block w-full mt-1">
+                                    @foreach ($gpus as $gpu)
+                                        <option value="{{ $gpu }}"
+                                            {{ old('gpu') == $gpu ? 'selected' : '' }}>{{ $gpu }}</option>
+                                    @endforeach
+                                </select>
+                                @error('gpu')
+                                    <span class="text-red-500 text-sm">{{ $message }}</span>
+                                @enderror
                             </div>
 
                             <div>
                                 <label class="block font-medium text-sm text-gray-700 dark:text-gray-300">Sistema
                                     Operativo</label>
-                                <select
+                                <select name="os"
                                     class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block w-full mt-1">
-                                    <option>Artix Linux</option>
-                                    <option>Arch Linux</option>
-                                    <option>Fedora Workstation</option>
-                                    <option>Ubuntu</option>
+                                    <option value="Artix Linux">Artix Linux</option>
+                                    <option value="Arch Linux">Arch Linux</option>
+                                    <option value="Fedora Workstation">Fedora Workstation</option>
+                                    <option value="Ubuntu">Ubuntu</option>
                                 </select>
+                                @error('os')
+                                    <span class="text-red-500 text-sm">{{ $message }}</span>
+                                @enderror
                             </div>
                         </div>
 
                         <div class="flex items-center justify-end mt-4 gap-4">
                             <a href="{{ route('workstations.index') }}"
                                 class="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100">Cancelar</a>
-                            <button type="button"
+                            <button type="submit"
                                 class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded shadow">
-                                Crear Orden (Demo)
+                                Crear Orden
                             </button>
                         </div>
                     </form>

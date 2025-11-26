@@ -12,6 +12,10 @@ class RoleController extends Controller
      */
     public function index(): View
     {
-        return view('roles.index');
+        $counts = \App\Models\User::selectRaw('role, count(*) as total')
+            ->groupBy('role')
+            ->pluck('total', 'role');
+
+        return view('roles.index', compact('counts'));
     }
 }

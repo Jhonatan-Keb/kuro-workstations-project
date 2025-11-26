@@ -16,11 +16,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::get('/roles', [App\Http\Controllers\RoleController::class, 'index'])->name('roles.index');
-    Route::get('/users', [App\Http\Controllers\UserController::class, 'index'])->name('users.index');
-    Route::get('/workstations', [App\Http\Controllers\WorkstationController::class, 'index'])->name('workstations.index');
-    Route::get('/workstations/create', [App\Http\Controllers\WorkstationController::class, 'create'])->name('workstations.create');
-    Route::get('/workstations/{id}/edit', [App\Http\Controllers\WorkstationController::class, 'edit'])->name('workstations.edit');
+    Route::resource('roles', App\Http\Controllers\RoleController::class);
+    Route::resource('users', App\Http\Controllers\UserController::class);
+    Route::resource('workstations', App\Http\Controllers\WorkstationController::class);
 });
 
 require __DIR__.'/auth.php';

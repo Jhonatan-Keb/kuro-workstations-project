@@ -11,12 +11,13 @@
         </div>
 
         <input id="photo" name="photo" type="file"
-            class="mt-2 block w-full text-sm text-gray-500
+            class="mt-2 block w-full text-sm text-gray-500 dark:text-gray-400
             file:mr-4 file:py-2 file:px-4
             file:rounded-full file:border-0
             file:text-sm file:font-semibold
             file:bg-indigo-50 file:text-indigo-700
-            hover:file:bg-indigo-100
+            dark:file:bg-indigo-900 dark:file:text-indigo-300
+            hover:file:bg-indigo-100 dark:hover:file:bg-indigo-800
         " />
         <x-input-error class="mt-2" :messages="$errors->get('photo')" />
     </div>
@@ -35,11 +36,11 @@
 
         @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && !$user->hasVerifiedEmail())
             <div>
-                <p class="text-sm mt-2 text-gray-800">
+                <p class="text-sm mt-2 text-gray-800 dark:text-gray-200">
                     {{ __('Your email address is unverified.') }}
 
                     <button form="send-verification"
-                        class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">
                         {{ __('Click here to re-send the verification email.') }}
                     </button>
                 </p>
@@ -58,7 +59,7 @@
 
         @if (session('status') === 'profile-updated')
             <p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 2000)"
-                class="text-sm text-gray-600">{{ __('Saved.') }}</p>
+                class="text-sm text-gray-600 dark:text-gray-400">{{ __('Saved.') }}</p>
         @endif
     </div>
 </form>
