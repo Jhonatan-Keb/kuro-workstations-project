@@ -125,17 +125,36 @@
                         </div>
                     </form>
 
-                    @can('delete', $workstation)
-                        <div class="mt-6 border-t border-gray-200 dark:border-gray-700 pt-6">
-                            <form action="{{ route('workstations.destroy', $workstation->id) }}" method="POST"
-                                onsubmit="return confirm('¿Seguro que deseas eliminar esta orden?');">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="text-red-500 hover:text-red-700 font-medium">Eliminar
-                                    Orden</button>
-                            </form>
-                        </div>
-                    @endcan
+                    <div class="mt-6 border-t border-gray-200 dark:border-gray-700 pt-6">
+                        <form id="delete-form-{{ $workstation->id }}"
+                            action="{{ route('workstations.destroy', $workstation->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="button" onclick="confirmDelete({{ $workstation->id }})"
+                                class="text-red-500 hover:text-red-700 font-medium">
+                                Eliminar Orden
+                            </button>
+                        </form>
+                    </div>
+
+                    <script>
+                        function confirmDelete(id) {
+                            Swal.fire({
+                                title: '¿Estás seguro?',
+                                text: "¡No podrás revertir esto!",
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonColor: '#ef4444',
+                                cancelButtonColor: '#3b82f6',
+                                confirmButtonText: 'Sí, eliminarlo',
+                                cancelButtonText: 'Cancelar'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    document.getElementById('delete-form-' + id).submit();
+                                }
+                            })
+                        }
+                    </script>
 
                 </div>
             </div>

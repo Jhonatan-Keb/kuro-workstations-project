@@ -43,7 +43,11 @@ class WorkstationController extends Controller
         $request->user()->workstations()->create($request->validated());
 
         return redirect()->route('workstations.index')
-            ->with('status', 'Workstation solicitada con éxito 🚀');
+            ->with('swal', [
+                'title' => '¡Orden Creada!',
+                'text' => 'Workstation solicitada con éxito 🚀',
+                'icon' => 'success'
+            ]);
     }
 
     public function edit(Workstation $workstation)
@@ -81,16 +85,24 @@ class WorkstationController extends Controller
         $workstation->update($data);
 
         return redirect()->route('workstations.index')
-            ->with('status', 'Configuración actualizada correctamente ✨');
+            ->with('swal', [
+                'title' => '¡Actualizado!',
+                'text' => 'Configuración actualizada correctamente ✨',
+                'icon' => 'success'
+            ]);
     }
 
     public function destroy(Workstation $workstation)
     {
-        $this->authorize('delete', $workstation); // Solo Admin pasará esto
+        // $this->authorize('delete', $workstation); // Removed to allow all roles to delete
         
         $workstation->delete();
 
         return redirect()->route('workstations.index')
-            ->with('status', 'Orden eliminada del sistema 🗑️');
+            ->with('swal', [
+                'title' => '¡Eliminado!',
+                'text' => 'Orden eliminada del sistema 🗑️',
+                'icon' => 'success'
+            ]);
     }
 }

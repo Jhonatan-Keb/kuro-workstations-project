@@ -1,59 +1,50 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Kuro Workstations
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Descripción del Proyecto
+**Kuro Workstations** es un sistema integral de gestión de estaciones de trabajo y citas médicas, diseñado para optimizar el flujo de trabajo entre administradores, doctores y usuarios. La plataforma permite una administración eficiente de roles, recursos y agendas, proporcionando una interfaz moderna y responsiva.
 
-## About Laravel
+## Historial de Implementación (Commits 1-4)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Commit 1: Arquitectura Base y Sistema de Autenticación
+**Implementación:**
+- **Configuración del Entorno:** Inicialización del proyecto Laravel con configuración de base de datos y variables de entorno seguras.
+- **Sistema de Usuarios:** Implementación de migraciones y modelos para la gestión de usuarios, incluyendo seeders robustos para poblar la base de datos con datos de prueba iniciales.
+- **Autenticación:** Despliegue del sistema de autenticación completo (Login, Registro, Recuperación de contraseña) asegurando el acceso protegido a las rutas del sistema.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Commit 2: Experiencia de Usuario (UX) y Diseño Adaptativo
+**Implementación:**
+- **Modo Oscuro (Dark Mode):** Integración completa de un tema oscuro utilizando Tailwind CSS. Se implementó una lógica de estilos condicionales para asegurar la legibilidad y el confort visual en todos los componentes, especialmente en la barra de navegación y los menús.
+- **Flujo de Navegación:** Rediseño de la ruta raíz (`/`) para presentar una landing page (`welcome.blade.php`) informativa y accesible.
+- **Accesibilidad:** Se garantizó que los accesos a "Login" y "Registro" estén siempre visibles y claramente diferenciados, mejorando la tasa de conversión y la facilidad de uso para nuevos visitantes.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Commit 3: Gestión de Órdenes e Interactividad Avanzada
+**Implementación:**
+- **Sistema de Notificaciones:** Integración de **SweetAlerts** como estándar global para el feedback del sistema. Esto reemplaza las alertas nativas del navegador con modales estilizados y animados para confirmaciones de éxito, error y advertencias.
+- **Gestión de Órdenes:** Desarrollo de la lógica de negocio para el ciclo de vida de las órdenes. Se implementaron controladores y políticas de acceso que permiten a los roles autorizados gestionar órdenes de manera segura.
+- **Acciones Destructivas Seguras:** Implementación de diálogos de confirmación antes de eliminar registros críticos (órdenes, estaciones), previniendo la pérdida accidental de datos.
 
-## Learning Laravel
+### Commit 4: Dashboard Especializado para Doctores
+**Implementación:**
+- **Panel de Control Médico:** Creación de un dashboard exclusivo para el rol de Doctor, diseñado para mostrar la información más relevante de un vistazo (próximas citas, estado de pacientes).
+- **Gestión de Citas en Tiempo Real:** Implementación de botones de acción rápida ("Completar", "Cancelar") que permiten a los doctores actualizar el estado de las citas directamente desde el listado, sin necesidad de navegar a páginas de detalle.
+- **Optimización de Consultas:** Refactorización de las consultas a base de datos (Firestore/MySQL) y creación de índices compuestos para asegurar tiempos de carga rápidos, incluso con grandes volúmenes de datos históricos.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Sobre Laravel
 
-## Laravel Sponsors
+Laravel es un framework de aplicaciones web con una sintaxis expresiva y elegante. Creemos que el desarrollo debe ser una experiencia agradable y creativa para ser verdaderamente satisfactoria. Laravel elimina el dolor del desarrollo facilitando tareas comunes utilizadas en muchos proyectos web, tales como:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+- [Motor de enrutamiento simple y rápido](https://laravel.com/docs/routing).
+- [Potente contenedor de inyección de dependencias](https://laravel.com/docs/container).
+- [Múltiples back-ends para almacenamiento de sesiones y caché](https://laravel.com/docs/session).
+- [ORM de base de datos expresivo e intuitivo](https://laravel.com/docs/eloquent).
+- [Migraciones de esquema agnósticas de base de datos](https://laravel.com/docs/migrations).
+- [Procesamiento robusto de trabajos en segundo plano](https://laravel.com/docs/queues).
+- [Transmisión de eventos en tiempo real](https://laravel.com/docs/broadcasting).
 
-### Premium Partners
+Laravel es accesible, potente y proporciona las herramientas necesarias para aplicaciones grandes y robustas.
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+## Licencia
 
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+El framework Laravel es software de código abierto licenciado bajo la [licencia MIT](https://opensource.org/licenses/MIT).

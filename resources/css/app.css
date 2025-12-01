@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* SweetAlert2 Dark Mode Overrides */
+.dark .swal2-popup {
+    background-color: #1f2937 !important; /* gray-800 */
+    color: #f3f4f6 !important; /* gray-100 */
+}
+
+.dark .swal2-title {
+    color: #f3f4f6 !important;
+}
+
+.dark .swal2-html-container {
+    color: #d1d5db !important; /* gray-300 */
+}
+
+.dark .swal2-validation-message {
+    background-color: #374151 !important; /* gray-700 */
+    color: #f3f4f6 !important;
+}

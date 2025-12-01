@@ -28,6 +28,12 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        session()->flash('swal', [
+            'title' => '¡Hola de nuevo!',
+            'text' => 'Has iniciado sesión correctamente.',
+            'icon' => 'success'
+        ]);
+
         return redirect()->intended(route('dashboard', absolute: false));
     }
 

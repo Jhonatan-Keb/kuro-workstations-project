@@ -60,6 +60,39 @@
             </main>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            @if (session('swal'))
+                Swal.fire({
+                    title: "{{ session('swal.title') }}",
+                    text: "{{ session('swal.text') }}",
+                    icon: "{{ session('swal.icon') }}",
+                    confirmButtonText: 'Aceptar'
+                });
+            @endif
+
+            @if (session('status'))
+                // Fallback for standard status messages if needed, or convert them to toasts
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                });
+
+                Toast.fire({
+                    icon: 'success',
+                    title: "{{ session('status') }}"
+                });
+            @endif
+        });
+    </script>
 </body>
 
 </html>

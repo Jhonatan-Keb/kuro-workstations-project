@@ -47,6 +47,12 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
+        session()->flash('swal', [
+            'title' => '¡Bienvenido!',
+            'text' => 'Tu cuenta ha sido creada exitosamente.',
+            'icon' => 'success'
+        ]);
+
         return redirect(route('dashboard', absolute: false));
     }
 }
